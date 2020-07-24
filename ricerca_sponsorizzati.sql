@@ -1,4 +1,4 @@
-SET @id_sponsor := 106;
+SET @id_sponsor := 106; -- ID dello Sponsor di cui si vogliono i dati
 
 SELECT
 	u.id,
@@ -25,8 +25,8 @@ SELECT
 	INNER JOIN users u ON t1.refer_id = u.id
 	LEFT JOIN jiri_jkshop_orders o ON u.id = o.user_id
 		WHERE
-			t1.user_id = @id_sponsor				    -- ID utente Promoter
-			AND o.orderstatus_id NOT IN (2,5) 	-- l'ordine è valido
+			t1.user_id = @id_sponsor -- ID utente Promoter/Sponsor
+			AND o.orderstatus_id NOT IN (2,5) -- l'ordine è valido
 			AND o.created_at BETWEEN '2000-01-01 00:00:00' AND '2020-12-31 23:59:59' -- per range di data
 
 GROUP BY u.id
